@@ -11,7 +11,7 @@ from app.schemas.user_schema import UserCreate, UserRead, UserUpdate
 
 router = APIRouter()
 
-
+# ENDPOINT POST
 @router.post("/", response_model=UserRead, status_code=status.HTTP_201_CREATED)
 async def create_user(user_data: UserCreate, conex: AsyncSession = Depends(get_db)):
     try:
@@ -46,7 +46,7 @@ async def create_user(user_data: UserCreate, conex: AsyncSession = Depends(get_d
             detail=f"Error inesperado al crear usuario: {str(e)}",
         )
 
-
+# ENDPOINT GET (Obtiene todos los usuarios)
 @router.get("/", response_model=list[UserRead])
 async def list_users(
     skip: int = 0,
@@ -64,7 +64,7 @@ async def list_users(
             detail=f"Error al obtener usuarios: {str(e)}",
         )
 
-
+# ENDPOINT GET (Obtiene un usuario por ID)
 @router.get("/{user_id}", response_model=UserRead)
 async def get_user(user_id: int, conex: AsyncSession = Depends(get_db)):
     try:
@@ -86,7 +86,7 @@ async def get_user(user_id: int, conex: AsyncSession = Depends(get_db)):
             detail=f"Error al obtener usuario: {str(e)}",
         )
 
-
+# ENDPOINT PATCH 
 @router.patch("/{user_id}", response_model=UserRead)
 async def update_user(
     user_id: int,
@@ -133,7 +133,7 @@ async def update_user(
             detail=f"Error inesperado al actualizar usuario: {str(e)}",
         )
 
-
+# ENDPOINT DELETE
 @router.delete("/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_user(user_id: int, conex: AsyncSession = Depends(get_db)):
     try:
