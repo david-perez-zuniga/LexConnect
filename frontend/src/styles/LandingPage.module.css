@@ -1,6 +1,6 @@
 .pageContainer {
   background-color: var(--surface);
-  color: var(--text-main);
+  color: var(--on-surface);
   min-height: 100vh;
   display: flex;
   flex-direction: column;

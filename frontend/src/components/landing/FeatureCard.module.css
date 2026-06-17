@@ -31,12 +31,12 @@
 .cardTitle {
   font-size: 1.5rem;
   font-weight: 500;
-  color: var(--text-main);
+  color: var(--on-surface);
   margin-bottom: 1rem;
 }
 
 .cardDescription {
-  color: var(--text-muted);
+  color: var(--on-surface-variant);
   line-height: 1.625;
   margin-bottom: 1.5rem;
 }

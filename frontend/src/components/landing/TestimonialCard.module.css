@@ -16,7 +16,7 @@
 }
 
 .content {
-  color: var(--text-muted);
+  color: var(--on-surface-variant);
   font-size: 0.875rem;
   line-height: 1.625;
   margin-bottom: 1.5rem;
@@ -25,6 +25,6 @@
 
 .author {
   font-weight: 500;
-  color: var(--text-main);
+  color: var(--on-surface);
   font-size: 0.875rem;
 }
