@@ -1,11 +1,8 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import layoutStyles from '../../styles/Landing.module.css';
 import styles from './HeroSection.module.css';
 
 export const HeroSection: React.FC = () => {
-  const navigate = useNavigate();
-
   return (
     <section className={layoutStyles.heroSection}>
       <div className={layoutStyles.heroBackground} style={{ backgroundImage: "url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1920&q=80')" }}></div>
@@ -26,10 +23,6 @@ export const HeroSection: React.FC = () => {
           </p>
           
           <div className={styles.heroButtons}>
-            <button className={styles.primaryButton} onClick={() => navigate('/directorio')}>
-              Explorar el directorio
-              <span className="material-symbols-outlined icon" style={{ fontSize: '16px' }} translate="no">search</span>
-            </button>
             <button className={styles.secondaryButton}>
               Conoce más
             </button>
