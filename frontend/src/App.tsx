@@ -1,7 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { LandingPage } from './pages/LandingPage'
-import { DirectoryPage } from './pages/DirectoryPage'
-import { LawyerProfile } from './components/lawyer/LawyerProfile'
+import { RegisterPage } from './pages/RegisterPage'
 
 const router = createBrowserRouter([
   {
@@ -9,12 +8,8 @@ const router = createBrowserRouter([
     element: <LandingPage />,
   },
   {
-    path: '/directorio',
-    element: <DirectoryPage />,
-  },
-  {
-    path: '/perfil/:slug',
-    element: <LawyerProfile />,
+    path: '/registro',
+    element: <RegisterPage />,
   },
 ])
 
