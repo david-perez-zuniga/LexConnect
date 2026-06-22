@@ -19,7 +19,7 @@ export const Header: React.FC = () => {
         </nav>
 
         <div className={styles.actions}>
-          <button className={styles.loginBtn}>Iniciar sesión</button>
+          <button className={styles.loginBtn} onClick={() => navigate('/iniciar-sesion')}>Iniciar sesión</button>
           <button className={styles.signupBtn} onClick={() => navigate('/registro')}>Regístrate ahora</button>
         </div>
 
@@ -33,7 +33,7 @@ export const Header: React.FC = () => {
       {isMobileMenuOpen && (
         <div className={styles.mobileMenu}>
           <Link to="/" className={styles.mobileLink}>Inicio</Link>
-          <button className={styles.mobileLoginBtn}>Iniciar sesión</button>
+          <button className={styles.mobileLoginBtn} onClick={() => navigate('/iniciar-sesion')}>Iniciar sesión</button>
           <button className={styles.mobileSignupBtn} onClick={() => navigate('/registro')}>Regístrate ahora</button>
         </div>
       )}
