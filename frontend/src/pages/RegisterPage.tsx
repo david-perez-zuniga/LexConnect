@@ -123,7 +123,7 @@ export const RegisterPage: React.FC = () => {
                 </form>
 
                 <div className={styles.footerLink}>
-                  <p>¿Ya tienes cuenta? <Link to="/" className={styles.loginLink}>Inicia sesión aquí.</Link></p>
+                  <p>¿Ya tienes cuenta? <Link to="/iniciar-sesion" className={styles.loginLink}>Inicia sesión aquí.</Link></p>
                 </div>
               </>
             )}
