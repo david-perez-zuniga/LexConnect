@@ -208,6 +208,59 @@
   transform: scale(0.98);
 }
 
+/* ===== Success Overlay ===== */
+.successOverlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.successIcon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: rgba(0, 48, 132, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.successIcon span {
+  font-size: 2.5rem;
+  color: #003084;
+  font-variation-settings: 'FILL' 1;
+}
+
+.successTitle {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin: 0;
+}
+
+.successMessage {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--on-surface-variant);
+  margin: 0 0 1rem 0;
+}
+
+/* ===== Error Message ===== */
+.errorMsg {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: #d32f2f;
+  background-color: rgba(211, 47, 47, 0.08);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-lg);
+  margin: 0;
+  text-align: center;
+}
+
 /* ===== Footer Link ===== */
 .footerLink {
   text-align: center;

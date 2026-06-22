@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Header } from '../components/layout/Header';
 import { Footer } from '../components/layout/Footer';
+import { useRegister } from '../hooks/useRegister';
 import styles from '../styles/RegisterPage.module.css';
 
 export const RegisterPage: React.FC = () => {
-  const [role, setRole] = useState<'cliente' | 'abogado'>('abogado');
+  const navigate = useNavigate();
+  const {
+    email, setEmail,
+    password, setPassword,
+    role, setRole,
+    cargando, error, exito,
+    submit, reset,
+  } = useRegister();
+
+  const irAlInicio = () => {
+    reset();
+    navigate('/');
+  };
 
   return (
     <div className={styles.page}>
@@ -23,73 +36,97 @@ export const RegisterPage: React.FC = () => {
 
         <section className={styles.section}>
           <div className={styles.card}>
-            <div className={styles.cardHeader}>
-              <h1 className={styles.cardTitle}>Regístrate ahora</h1>
-              <p className={styles.cardSubtitle}>Únete a la red líder de profesionales del derecho</p>
-            </div>
-
-            <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
-              <div className={styles.field}>
-                <label className={styles.label} htmlFor="email">Correo electrónico</label>
-                <input
-                  className={styles.input}
-                  id="email"
-                  type="email"
-                  placeholder="ejemplo@lawsource.com"
-                />
-              </div>
-
-              <div className={styles.field}>
-                <label className={styles.label} htmlFor="password">Contraseña</label>
-                <input
-                  className={styles.input}
-                  id="password"
-                  type="password"
-                  placeholder="••••••••"
-                />
-              </div>
-
-              <div className={styles.field}>
-                <label className={styles.label} htmlFor="confirm-password">Confirmación de contraseña</label>
-                <input
-                  className={styles.input}
-                  id="confirm-password"
-                  type="password"
-                  placeholder="••••••••"
-                />
-              </div>
-
-              <div className={styles.field}>
-                <span className={styles.label}>Rol</span>
-                <div className={styles.roleGrid}>
-                  <button
-                    type="button"
-                    className={`${styles.roleBtn} ${role === 'cliente' ? styles.roleBtnActive : ''}`}
-                    onClick={() => setRole('cliente')}
-                  >
-                    <span className={`material-symbols-outlined ${role === 'cliente' ? styles.iconFilled : ''}`}>person</span>
-                    Cliente
-                  </button>
-                  <button
-                    type="button"
-                    className={`${styles.roleBtn} ${role === 'abogado' ? styles.roleBtnActive : ''}`}
-                    onClick={() => setRole('abogado')}
-                  >
-                    <span className={`material-symbols-outlined ${role === 'abogado' ? styles.iconFilled : ''}`}>gavel</span>
-                    Abogado
-                  </button>
+            {exito ? (
+              <div className={styles.successOverlay}>
+                <div className={styles.successIcon}>
+                  <span className="material-symbols-outlined">check_circle</span>
                 </div>
+                <h2 className={styles.successTitle}>¡Registro exitoso!</h2>
+                <p className={styles.successMessage}>Te haz registrado correctamente</p>
+                <button onClick={irAlInicio} className={styles.submitBtn}>
+                  Aceptar
+                  <span className="material-symbols-outlined">home</span>
+                </button>
               </div>
+            ) : (
+              <>
+                <div className={styles.cardHeader}>
+                  <h1 className={styles.cardTitle}>Regístrate ahora</h1>
+                  <p className={styles.cardSubtitle}>Únete a la red líder de profesionales del derecho</p>
+                </div>
 
-              <button type="submit" className={styles.submitBtn}>
-                Registrarme
-                <span className="material-symbols-outlined">arrow_forward</span>
-              </button>
-            </form>
+                <form className={styles.form} onSubmit={submit}>
+                  <div className={styles.field}>
+                    <label className={styles.label} htmlFor="email">Correo electrónico</label>
+                    <input
+                      className={styles.input}
+                      id="email"
+                      type="email"
+                      placeholder="ejemplo@lawsource.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                  </div>
 
-            <div className={styles.footerLink}>
-              <p>¿Ya tienes cuenta? <Link to="/" className={styles.loginLink}>Inicia sesión aquí.</Link></p>
-            </div>
+                  <div className={styles.field}>
+                    <label className={styles.label} htmlFor="password">Contraseña</label>
+                    <input
+                      className={styles.input}
+                      id="password"
+                      type="password"
+                      placeholder="••••••••"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+                  </div>
+
+                  <div className={styles.field}>
+                    <label className={styles.label} htmlFor="confirm-password">Confirmación de contraseña</label>
+                    <input
+                      className={styles.input}
+                      id="confirm-password"
+                      type="password"
+                      placeholder="••••••••"
+                    />
+                  </div>
+
+                  <div className={styles.field}>
+                    <span className={styles.label}>Rol</span>
+                    <div className={styles.roleGrid}>
+                      <button
+                        type="button"
+                        className={`${styles.roleBtn} ${role === 'cliente' ? styles.roleBtnActive : ''}`}
+                        onClick={() => setRole('cliente')}
+                      >
+                        <span className={`material-symbols-outlined ${role === 'cliente' ? styles.iconFilled : ''}`}>person</span>
+                        Cliente
+                      </button>
+                      <button
+                        type="button"
+                        className={`${styles.roleBtn} ${role === 'abogado' ? styles.roleBtnActive : ''}`}
+                        onClick={() => setRole('abogado')}
+                      >
+                        <span className={`material-symbols-outlined ${role === 'abogado' ? styles.iconFilled : ''}`}>gavel</span>
+                        Abogado
+                      </button>
+                    </div>
+                  </div>
+
+                  {error && <p className={styles.errorMsg}>{error}</p>}
+
+                  <button type="submit" className={styles.submitBtn} disabled={cargando}>
+                    {cargando ? 'Registrando...' : 'Registrarme'}
+                    {!cargando && <span className="material-symbols-outlined">arrow_forward</span>}
+                  </button>
+                </form>
+
+                <div className={styles.footerLink}>
+                  <p>¿Ya tienes cuenta? <Link to="/" className={styles.loginLink}>Inicia sesión aquí.</Link></p>
+                </div>
+              </>
+            )}
           </div>
         </section>
       </main>
