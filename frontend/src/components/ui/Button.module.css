@@ -23,7 +23,7 @@
 }
 
 .primary:hover:not(:disabled) {
-  background-color: var(--primary-hover);
+  opacity: 0.9;
 }
 
 .secondary {
