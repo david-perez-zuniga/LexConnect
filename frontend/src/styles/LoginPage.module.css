@@ -174,6 +174,16 @@
   transform: scale(0.98);
 }
 
+.error {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: #dc2626;
+  text-align: center;
+  padding: 0.5rem;
+  background-color: #fef2f2;
+  border-radius: var(--radius-md);
+}
+
 .divider {
   height: 1px;
   background-color: var(--outline-variant);
