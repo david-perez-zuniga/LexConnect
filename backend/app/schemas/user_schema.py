@@ -31,3 +31,8 @@ class UserRead(UserBase):
 class LoginRequest(BaseSchema):
     email: EmailStr
     password: str = Field(..., min_length=1)
+
+# Propiedad del modelo UserRead para calcular si hay un perfil o no
+def has_profile(self) -> bool:
+    return self.profile_client is not None
+
