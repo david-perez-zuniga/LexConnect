@@ -10,6 +10,7 @@ from .user_schema import (
     UserCreate,
     UserRead,
     UserUpdate,
+    LoginUser
 )
 
 # Configuración para el esquema profile_lawyer
@@ -34,6 +35,7 @@ __all__ = [
     "UserCreate",
     "UserRead",
     "UserUpdate",
+    "LoginUser",
     "ProfileLawyerBase",
     "ProfileLawyerCreate",
     "ProfileLawyerRead",
