@@ -45,6 +45,60 @@
   gap: 2rem;
 }
 
+.userSection {
+  display: none;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--primary-container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--on-primary-container);
+}
+
+.avatar span {
+  font-size: 18px;
+}
+
+.userName {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.logoutBtn {
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+  cursor: pointer;
+  padding: 0.375rem 0.75rem;
+  border-radius: var(--radius-lg);
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.logoutBtn:hover {
+  color: var(--error);
+  background-color: var(--error-container);
+}
+
 .navLinkActive {
   font-family: var(--font-body);
   font-size: 0.875rem;
@@ -167,6 +221,30 @@
   text-align: center;
 }
 
+.mobileUserInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.mobileLogoutBtn {
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+}
+
 @media (min-width: 768px) {
   .headerInner {
     padding: 0 var(--margin-desktop);
@@ -176,7 +254,8 @@
     display: flex;
   }
 
-  .actions {
+  .actions,
+  .userSection {
     display: flex;
   }
 
