@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { LandingPage } from './pages/LandingPage'
 import { RegisterPage } from './pages/RegisterPage'
 import { LoginPage } from './pages/LoginPage'
+import { ProfilePage } from './pages/ProfilePage'
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: '/iniciar-sesion',
     element: <LoginPage />,
+  },
+  {
+    path: '/completar-perfil',
+    element: <ProfilePage />,
   },
 ])
 
