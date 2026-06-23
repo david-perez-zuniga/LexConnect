@@ -1,12 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Header } from '../components/layout/Header';
 import { Footer } from '../components/layout/Footer';
 import { Input } from '../components/ui/Input';
 import { Button } from '../components/ui/Button';
+import { useLogin } from '../hooks/userLogin';
 import styles from '../styles/LoginPage.module.css';
 
 export const LoginPage: React.FC = () => {
+  const { email, setEmail, password, setPassword, submit, cargando, error, exito } = useLogin()
+  const navigate = useNavigate()
+
+  if (exito) {
+    navigate('/dashboard')
+  }
+
   return (
     <div className={styles.page}>
       <Header />
@@ -28,7 +36,7 @@ export const LoginPage: React.FC = () => {
               <p className={styles.cardSubtitle}>Accede a tu red profesional legal.</p>
             </div>
 
-            <form className={styles.form}>
+            <form className={styles.form} onSubmit={submit}>
               <div className={styles.field}>
                 <label className={styles.label} htmlFor="email">Correo electrónico</label>
                 <Input
@@ -37,6 +45,8 @@ export const LoginPage: React.FC = () => {
                   name="email"
                   placeholder="tu@email.com"
                   autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
 
@@ -48,8 +58,12 @@ export const LoginPage: React.FC = () => {
                   name="password"
                   placeholder="••••••••"
                   autoComplete="current-password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
+
+              {error && <p className={styles.error}>{error}</p>}
 
               <div className={styles.options}>
                 <label className={styles.checkbox}>
@@ -59,8 +73,8 @@ export const LoginPage: React.FC = () => {
                 <a href="#" className={styles.forgotLink}>¿Olvidaste tu contraseña?</a>
               </div>
 
-              <Button type="submit" fullWidth>
-                Iniciar sesión
+              <Button type="submit" fullWidth disabled={cargando}>
+                {cargando ? 'Iniciando sesión...' : 'Iniciar sesión'}
                 <span className="material-symbols-outlined" translate="no" style={{ fontSize: '1.25rem' }}>login</span>
               </Button>
             </form>
