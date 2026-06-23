@@ -2,7 +2,16 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Header.module.css';
 
-export const Header: React.FC = () => {
+interface HeaderUser {
+  name: string;
+  onLogout?: () => void;
+}
+
+interface HeaderProps {
+  user?: HeaderUser;
+}
+
+export const Header: React.FC<HeaderProps> = ({ user }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -18,10 +27,24 @@ export const Header: React.FC = () => {
           <Link to="/" className={styles.navLinkActive}>Inicio</Link>
         </nav>
 
-        <div className={styles.actions}>
-          <button className={styles.loginBtn} onClick={() => navigate('/iniciar-sesion')}>Iniciar sesión</button>
-          <button className={styles.signupBtn} onClick={() => navigate('/registro')}>Regístrate ahora</button>
-        </div>
+        {user ? (
+          <div className={styles.userSection}>
+            <div className={styles.userInfo}>
+              <div className={styles.avatar}>
+                <span className="material-symbols-outlined" translate="no">person</span>
+              </div>
+              <span className={styles.userName}>{user.name}</span>
+            </div>
+            <button className={styles.logoutBtn} onClick={user.onLogout}>
+              Cerrar Sesión
+            </button>
+          </div>
+        ) : (
+          <div className={styles.actions}>
+            <button className={styles.loginBtn} onClick={() => navigate('/iniciar-sesion')}>Iniciar sesión</button>
+            <button className={styles.signupBtn} onClick={() => navigate('/registro')}>Regístrate ahora</button>
+          </div>
+        )}
 
         <button className={styles.menuToggle} onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
           <span className="material-symbols-outlined" translate="no">
@@ -33,8 +56,20 @@ export const Header: React.FC = () => {
       {isMobileMenuOpen && (
         <div className={styles.mobileMenu}>
           <Link to="/" className={styles.mobileLink}>Inicio</Link>
-          <button className={styles.mobileLoginBtn} onClick={() => navigate('/iniciar-sesion')}>Iniciar sesión</button>
-          <button className={styles.mobileSignupBtn} onClick={() => navigate('/registro')}>Regístrate ahora</button>
+          {user ? (
+            <>
+              <div className={styles.mobileUserInfo}>
+                <span className="material-symbols-outlined" translate="no">person</span>
+                <span>{user.name}</span>
+              </div>
+              <button className={styles.mobileLogoutBtn} onClick={user.onLogout}>Cerrar Sesión</button>
+            </>
+          ) : (
+            <>
+              <button className={styles.mobileLoginBtn} onClick={() => navigate('/iniciar-sesion')}>Iniciar sesión</button>
+              <button className={styles.mobileSignupBtn} onClick={() => navigate('/registro')}>Regístrate ahora</button>
+            </>
+          )}
         </div>
       )}
     </header>
