@@ -28,6 +28,6 @@ class UserRead(UserBase):
     updated_at: datetime
 
 # Clase hija LoginRequest que hereda de UserBasse esta se usará para el login
-class LoginUser(BaseSchema):
+class LoginRequest(BaseSchema):
     email: EmailStr
     password: str = Field(..., min_length=1)
