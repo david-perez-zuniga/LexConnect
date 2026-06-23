@@ -24,7 +24,7 @@ const CIUDADES = [
 
 export const ProfilePage: React.FC = () => {
   const navigate = useNavigate();
-  const { cargando, error, exito, submit } = useProfile();
+  const { step, cargando, error, exito, submit, save, goBack } = useProfile();
 
   const handleLogout = () => {
     navigate('/');
@@ -47,6 +47,104 @@ export const ProfilePage: React.FC = () => {
             </div>
           </div>
         </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (step === 2) {
+    return (
+      <div className={styles.page}>
+        <Header user={{ name: 'Dr. Alejandro Rivera', onLogout: handleLogout }} />
+
+        <main className={styles.main}>
+          <div className={styles.bgDecor}>
+            <div className={styles.bgBlur1} />
+            <div className={styles.bgBlur2} />
+          </div>
+
+          <div className={styles.wrapper}>
+            <div className={styles.progressHeader}>
+              <div className={styles.stepBadge}>
+                <span className={styles.stepBadgeText}>Paso 2 de 2</span>
+              </div>
+              <div className={styles.progressTrack}>
+                <div className={styles.progressFill} style={{ width: '100%' }} />
+              </div>
+            </div>
+
+            <div className={styles.previewCard}>
+              <div className={styles.previewHeaderBg}>
+                <svg className={styles.previewPattern} viewBox="0 0 200 80" preserveAspectRatio="none" aria-hidden="true">
+                  <line x1="0" y1="80" x2="40" y2="0" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+                  <line x1="40" y1="80" x2="80" y2="0" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+                  <line x1="80" y1="80" x2="120" y2="0" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+                  <line x1="120" y1="80" x2="160" y2="0" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+                  <line x1="160" y1="80" x2="200" y2="0" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+                  <line x1="20" y1="80" x2="60" y2="0" stroke="rgba(255,255,255,0.04)" strokeWidth="1" />
+                  <line x1="60" y1="80" x2="100" y2="0" stroke="rgba(255,255,255,0.04)" strokeWidth="1" />
+                  <line x1="100" y1="80" x2="140" y2="0" stroke="rgba(255,255,255,0.04)" strokeWidth="1" />
+                  <line x1="140" y1="80" x2="180" y2="0" stroke="rgba(255,255,255,0.04)" strokeWidth="1" />
+                </svg>
+              </div>
+
+              <div className={styles.previewAvatarWrapper}>
+                <div className={styles.previewAvatar}>
+                  <span className="material-symbols-outlined" translate="no">person</span>
+                </div>
+              </div>
+
+              <h2 className={styles.previewName}>Dr. Alejandro Rivera</h2>
+
+              <div className={styles.previewInfoGrid}>
+                <div className={styles.previewInfoItem}>
+                  <span className="material-symbols-outlined" translate="no">pin_drop</span>
+                  <span className={styles.previewInfoText}>Bogotá, Colombia</span>
+                </div>
+                <div className={styles.previewInfoItem}>
+                  <span className="material-symbols-outlined" translate="no">calendar_today</span>
+                  <span className={styles.previewInfoText}>15 de marzo de 1985</span>
+                </div>
+              </div>
+
+              <div className={styles.previewBanner}>
+                <div className={styles.previewBannerIcon}>
+                  <span className="material-symbols-outlined" translate="no">info</span>
+                </div>
+                <div className={styles.previewBannerText}>
+                  <p>Al guardar tu perfil, podrás añadir tu firma digital y personalizar tu experiencia en LexConnect.</p>
+                </div>
+              </div>
+
+              {error && <p style={{ color: 'var(--error)', textAlign: 'center', fontSize: '0.875rem' }}>{error}</p>}
+
+              <div className={styles.previewActions}>
+                <button type="button" className={styles.previewBtnSecondary} onClick={goBack}>
+                  <span className="material-symbols-outlined" translate="no">arrow_back</span>
+                  Regresar y Modificar
+                </button>
+                <button type="button" className={styles.previewBtnPrimary} onClick={save} disabled={cargando}>
+                  {cargando ? (
+                    <>
+                      <span className={`material-symbols-outlined ${styles.spinner}`} translate="no">progress_activity</span>
+                      Guardando...
+                    </>
+                  ) : (
+                    <>
+                      Guardar Perfil
+                      <span className="material-symbols-outlined" translate="no">check</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
+              <p className={styles.legalText}>
+                Al guardar tu perfil, confirmas que la información proporcionada es veraz y actual.
+              </p>
+            </div>
+          </div>
+        </main>
+
         <Footer />
       </div>
     );
