@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from pydantic import EmailStr, Field
+from pydantic import ConfigDict, EmailStr, Field
 
 from . import BaseSchema
 from ..models.md_User import UserRole
@@ -26,6 +26,9 @@ class UserRead(UserBase):
     id: int
     created_at: datetime
     updated_at: datetime
+    has_profile: bool
+
+    model_config = ConfigDict(from_attributes=True)
 
 # Clase hija LoginRequest que hereda de UserBasse esta se usará para el login
 class LoginRequest(BaseSchema):
