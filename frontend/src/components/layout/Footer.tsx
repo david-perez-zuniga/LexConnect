@@ -6,8 +6,8 @@ export const Footer: React.FC = () => {
     <footer className={styles.footer}>
       <div className={styles.footerInner}>
         <div className={styles.brand}>
-          <span className={styles.brandName}>LawSource</span>
-          <p className={styles.copyright}>© 2024 LawSource. Todos los derechos reservados.</p>
+          <span className={styles.brandName}>TechLawyer</span>
+          <p className={styles.copyright}>© 2024 TechLawyer. Todos los derechos reservados.</p>
         </div>
         <nav className={styles.nav}>
           <a href="/" className={styles.navLink}>Aviso Legal</a>

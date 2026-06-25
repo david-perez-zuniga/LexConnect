@@ -20,7 +20,7 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
       <div className={styles.headerInner}>
         <div className={styles.brand}>
           <span className={`material-symbols-outlined ${styles.iconFilled}`} translate="no">gavel</span>
-          LawSource
+          TechLawyer
         </div>
 
         <nav className={styles.nav}>

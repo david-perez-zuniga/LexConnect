@@ -23,7 +23,7 @@ export const LoginPage: React.FC = () => {
         <div className={styles.bgLayer}>
           <img
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLj9ft7zkiSFPuglVwreR7W-aXky42pDL2VjzDHPNTzWfXOBfojB6LrlSYM-Kd9_b_3Ria-JSo1ItuuoE8PiKhCGbs00dJGQVgnzSgIOTXb1qzDBvOmtMGdpujmd8M03j__Lp2l8WCnvrVBeecG7SMnvHw5dNmC755LMzt3vG5_fW3jPOyc_MQS1NJXNMLni4ILwTFaY3vnP_5DEYqkuN23GZcFLvInmzrl0zZc_9jdW4A66wCfzeKVvIyy2U9EFMFVFlKofM6h8yj"
-            alt="LawSource Professional Environment"
+            alt="TechLawyer Professional Environment"
             className={styles.bgImage}
           />
           <div className={styles.vignette} />
